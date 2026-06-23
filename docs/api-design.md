@@ -3,16 +3,14 @@
 ## React
 
 ```tsx
-<ContextMenu
-  items={items}
-  bodyClass="my-menu-body"
-  itemClass="my-menu-item"
-  renderItem={({ item }) => <div>{item.label}</div>}
-  renderBody={({ items }) => <div>{items.map(...)}</div>}
->
-  <div>右键触发区域</div>
-</ContextMenu>
+<ContextMenuProvider>
+  <ContextMenu items={items}>
+    <div>Right click here</div>
+  </ContextMenu>
+</ContextMenuProvider>
 ```
+
+ContextMenuProvider 会自动挂载 ContextMenuRenderer，通常用户不需要手动使用 ContextMenuRenderer。
 
 ## Vue
 

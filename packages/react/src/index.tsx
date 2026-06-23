@@ -2,17 +2,21 @@ import "./styles.css"
 import type { ContextMenuItem } from "@context-menu-kit/core"
 import { closeContextMenu, openContextMenu } from "@context-menu-kit/core"
 import type { ReactNode } from "react"
+import { ContextMenuRenderOptions } from "./types"
 
-export type ContextMenuProps<T = unknown> = {
+export type ContextMenuProps<T = unknown> = ContextMenuRenderOptions<T> & {
   items: ContextMenuItem<T>[]
-  bodyClass?: string
-  itemClass?: string
-  renderItem?: (props: { item: ContextMenuItem<T>; close: () => void }) => ReactNode
-  renderBody?: (props: { items: ContextMenuItem<T>[]; close: () => void }) => ReactNode
   children: ReactNode
 }
 
-export function ContextMenu<T = unknown>({ items, children }: ContextMenuProps<T>) {
+export function ContextMenu<T = unknown>({
+  items,
+  bodyClass,
+  itemClass,
+  renderItem,
+  renderBody,
+  children
+}: ContextMenuProps<T>) {
   return (
     <div
       onContextMenu={(event) => {
@@ -23,7 +27,11 @@ export function ContextMenu<T = unknown>({ items, children }: ContextMenuProps<T
           x: event.clientX,
           y: event.clientY,
           items,
-          event: event.nativeEvent
+          event: event.nativeEvent,
+          bodyClass,
+          itemClass,
+          renderItem,
+          renderBody
         })
       }}
     >
@@ -33,9 +41,7 @@ export function ContextMenu<T = unknown>({ items, children }: ContextMenuProps<T
 }
 
 export { closeContextMenu }
-export {
-  ContextMenuRenderer,
-  type ContextMenuRendererProps,
-  type RenderItemProps,
-  type RenderBodyProps
-} from "./ContextMenuRenderer"
+export { ContextMenuRenderer } from "./ContextMenuRenderer"
+export type { ContextMenuRenderOptions, RenderItemProps, RenderBodyProps } from "./types"
+export { ContextMenuProvider } from "./ContextMenuProvider"
+export type { ContextMenuProviderProps } from "./ContextMenuProvider"

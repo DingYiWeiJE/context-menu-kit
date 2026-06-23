@@ -6,6 +6,7 @@
   "description": "A lightweight UI kit for customizable context menus.",
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "dev:react": "pnpm --filter react dev",
     "build": "pnpm -r --filter \"@context-menu-kit/*\" build",
     "lint": "eslint .",
     "format": "prettier . --write",

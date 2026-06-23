@@ -1,94 +1,91 @@
 import type { ContextMenuItem, ContextMenuState } from "@context-menu-kit/core"
 import { closeContextMenu, subscribeContextMenu } from "@context-menu-kit/core"
-import { useEffect, useState } from "react"
+import type { ReactNode } from "react"
+import { useEffect, useMemo, useState } from "react"
+import { ContextMenuRenderOptions, RenderItemProps } from "./types"
 
-function mergeClassNames(...classes: Array<string | false | undefined>) {
+function mergeClassNames(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ")
 }
 
-export interface RenderItemProps {
-  item: ContextMenuItem
-  close: () => void
-}
-
-export interface RenderBodyProps {
-  items: ContextMenuItem[]
-  close: () => void
-}
-
-export interface ContextMenuRendererProps {
-  bodyClass?: string
-  itemClass?: string
-  renderItem?: (props: RenderItemProps) => React.ReactNode
-  renderBody?: (props: RenderBodyProps) => React.ReactNode
-}
-
-export function ContextMenuRenderer(props: ContextMenuRendererProps) {
-  const { bodyClass, itemClass, renderItem, renderBody } = props
+export function ContextMenuRenderer() {
   const [state, setState] = useState<ContextMenuState | null>(null)
 
   useEffect(() => {
-    return subscribeContextMenu((nextState) => {
-      setState(nextState)
-    })
+    return subscribeContextMenu(setState)
   }, [])
 
-  if (!state?.isOpen) {
+  const isOpen = state?.isOpen
+
+  const bodyStyle = useMemo<React.CSSProperties | undefined>(() => {
+    if (!state) return undefined
+
+    return {
+      position: "fixed",
+      left: state.x,
+      top: state.y,
+      zIndex: 9999
+    }
+  }, [state?.x, state?.y])
+
+  if (!isOpen || !state) {
     return null
   }
 
-  if (renderBody) {
-    return (
-      <div
-        className={mergeClassNames("cmk-body", bodyClass)}
-        style={{
-          position: "fixed",
-          left: state.x,
-          top: state.y
-        }}
-      >
-        {renderBody({
-          items: state.items,
-          close: closeContextMenu
-        })}
-      </div>
-    )
+  const { items, bodyClass, itemClass, renderItem, renderBody } = state as ContextMenuState &
+    ContextMenuRenderOptions
+
+  const close = closeContextMenu
+
+  return (
+    <div className={mergeClassNames("cmk-body", bodyClass)} style={bodyStyle} role="menu">
+      {renderBody
+        ? renderBody({ items, close })
+        : items.map((item) => (
+            <ContextMenuRendererItem
+              key={item.id}
+              item={item}
+              itemClass={itemClass}
+              renderItem={renderItem}
+              close={close}
+            />
+          ))}
+    </div>
+  )
+}
+
+interface ContextMenuRendererItemProps {
+  item: ContextMenuItem
+  itemClass?: string
+  renderItem?: (props: RenderItemProps) => ReactNode
+  close: () => void
+}
+
+function ContextMenuRendererItem({
+  item,
+  itemClass,
+  renderItem,
+  close
+}: ContextMenuRendererItemProps) {
+  if (renderItem) {
+    return <>{renderItem({ item, close })}</>
+  }
+
+  const handleClick = () => {
+    if (item.disabled) return
+
+    item.onClick?.(item)
+    close()
   }
 
   return (
     <div
-      className={mergeClassNames("cmk-body", bodyClass)}
-      style={{
-        position: "fixed",
-        left: state.x,
-        top: state.y
-      }}
+      className={mergeClassNames("cmk-item", itemClass, item.disabled && "cmk-item-disabled")}
+      role="menuitem"
+      aria-disabled={item.disabled || undefined}
+      onClick={handleClick}
     >
-      {state.items.map((item) => {
-        if (renderItem) {
-          return (
-            <div key={item.id}>
-              {renderItem({
-                item,
-                close: closeContextMenu
-              })}
-            </div>
-          )
-        }
-        return (
-          <div
-            key={item.id}
-            className={mergeClassNames("cmk-item", itemClass, item.disabled && "cmk-item-disabled")}
-            onClick={() => {
-              if (item.disabled) return
-              item.onClick?.(item)
-              closeContextMenu()
-            }}
-          >
-            {item.label}
-          </div>
-        )
-      })}
+      {item.label}
     </div>
   )
 }

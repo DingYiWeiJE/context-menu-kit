@@ -33,6 +33,10 @@ export type ContextMenuOpenOptions = {
    * 触发右键的原始事件
    */
   event?: MouseEvent
+  bodyClass?: string
+  itemClass?: string
+  renderItem?: unknown
+  renderBody?: unknown
 }
 
 export type ContextMenuState = {
@@ -42,6 +46,10 @@ export type ContextMenuState = {
   y: number
   items: ContextMenuItem[]
   event?: MouseEvent
+  bodyClass?: string
+  itemClass?: string
+  renderItem?: unknown
+  renderBody?: unknown
 }
 
 export type ContextMenuListener = (state: ContextMenuState) => void
@@ -63,6 +71,10 @@ export function openContextMenu(options: ContextMenuOpenOptions) {
   state.y = options.y
   state.items = options.items
   state.event = options.event
+  state.bodyClass = options.bodyClass
+  state.itemClass = options.itemClass
+  state.renderItem = options.renderItem
+  state.renderBody = options.renderBody
 
   emit()
 }
