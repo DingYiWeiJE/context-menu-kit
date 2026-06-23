@@ -1,14 +1,11 @@
 {
-  "name": "@context-menu-kit/core",
+  "name": "@context-menu-kit/dom",
   "version": "0.0.1",
-  "description": "Core utilities for context-menu-kit.",
+  "description": "DOM renderer for context-menu-kit.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsup"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -20,9 +17,16 @@
     "dist"
   ],
   "sideEffects": false,
+  "scripts": {
+    "build": "tsup"
+  },
   "keywords": [
     "context-menu",
-    "right-click-menu"
+    "right-click-menu",
+    "dom"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@context-menu-kit/core": "workspace:*"
+  }
 }

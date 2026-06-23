@@ -5,7 +5,8 @@
   "type": "module",
   "description": "A lightweight UI kit for customizable context menus.",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "pnpm -r --filter \"@context-menu-kit/*\" build"
   },
   "keywords": [
     "context-menu",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/DingYiWeiJE/context-menu-kit#readme",
   "devDependencies": {
-    "typescript": "^6.0.3"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,1 +1,0 @@
-export { version } from "@context-menu-kit/core"

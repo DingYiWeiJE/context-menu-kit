@@ -10,10 +10,12 @@
     "skipLibCheck": true, // 跳过库文件的类型检查
     "isolatedModules": true, // 这里指定了模块类型为 ESNext
     "jsx": "react-jsx", // 这里指定了 JSX 语法
+    "baseUrl": ".", // 这里指定了基础路径
     "paths": { // 这里是路径别名配置
-      "@context-menu-kit/core": ["./packages/core/src/index.ts"],
-      "@context-menu-kit/react": ["./packages/react/src/index.ts"],
-      "@context-menu-kit/vue": ["./packages/vue/src/index.ts"]
+      "@context-menu-kit/dom": ["packages/dom/src/index.ts"],
+      "@context-menu-kit/core": ["packages/core/src/index.ts"],
+      "@context-menu-kit/react": ["packages/react/src/index.ts"],
+      "@context-menu-kit/vue": ["packages/vue/src/index.ts"]
     }
   }
 }
