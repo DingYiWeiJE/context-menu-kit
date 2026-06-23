@@ -1,0 +1,26 @@
+{
+  "name": "context-menu-kit",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "A lightweight UI kit for customizable context menus.",
+  "scripts": {},
+  "keywords": [
+    "context-menu",
+    "right-click-menu",
+    "react",
+    "vue",
+    "monorepo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DingYiWeiJE/context-menu-kit.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.10.0",
+  "bugs": {
+    "url": "https://github.com/DingYiWeiJE/context-menu-kit/issues"
+  },
+  "homepage": "https://github.com/DingYiWeiJE/context-menu-kit#readme"
+}
