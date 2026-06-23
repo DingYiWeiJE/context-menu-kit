@@ -28,10 +28,12 @@ export function ContextMenu<T = unknown>({
           y: event.clientY,
           items,
           event: event.nativeEvent,
-          bodyClass,
-          itemClass,
-          renderItem,
-          renderBody
+          meta: {
+            bodyClass,
+            itemClass,
+            renderItem,
+            renderBody
+          }
         })
       }}
     >

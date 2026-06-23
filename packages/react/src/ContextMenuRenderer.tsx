@@ -32,8 +32,9 @@ export function ContextMenuRenderer() {
     return null
   }
 
-  const { items, bodyClass, itemClass, renderItem, renderBody } = state as ContextMenuState &
-    ContextMenuRenderOptions
+  const { items } = state
+  const { bodyClass, itemClass, renderItem, renderBody } = (state.meta ??
+    {}) as ContextMenuRenderOptions
 
   const close = closeContextMenu
 

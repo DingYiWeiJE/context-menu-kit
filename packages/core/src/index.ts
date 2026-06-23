@@ -1,3 +1,5 @@
+export type ContextMenuMeta = Record<string, unknown>
+
 export type ContextMenuItem<T = unknown> = {
   id: string
   label?: string
@@ -28,15 +30,12 @@ export type ContextMenuOpenOptions = {
    * 菜单项
    */
   items: ContextMenuItem[]
+  meta?: ContextMenuMeta
 
   /**
    * 触发右键的原始事件
    */
   event?: MouseEvent
-  bodyClass?: string
-  itemClass?: string
-  renderItem?: unknown
-  renderBody?: unknown
 }
 
 export type ContextMenuState = {
@@ -46,10 +45,7 @@ export type ContextMenuState = {
   y: number
   items: ContextMenuItem[]
   event?: MouseEvent
-  bodyClass?: string
-  itemClass?: string
-  renderItem?: unknown
-  renderBody?: unknown
+  meta?: ContextMenuMeta
 }
 
 export type ContextMenuListener = (state: ContextMenuState) => void
@@ -71,10 +67,7 @@ export function openContextMenu(options: ContextMenuOpenOptions) {
   state.y = options.y
   state.items = options.items
   state.event = options.event
-  state.bodyClass = options.bodyClass
-  state.itemClass = options.itemClass
-  state.renderItem = options.renderItem
-  state.renderBody = options.renderBody
+  state.meta = options.meta
 
   emit()
 }
@@ -84,6 +77,7 @@ export function closeContextMenu() {
   state.id = null
   state.items = []
   state.event = undefined
+  state.meta = undefined
 
   emit()
 }
