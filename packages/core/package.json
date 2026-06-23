@@ -1,0 +1,25 @@
+{
+  "name": "@context-menu-kit/core",
+  "version": "0.0.1",
+  "description": "Core utilities for context-menu-kit.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "keywords": [
+    "context-menu",
+    "right-click-menu"
+  ],
+  "license": "MIT"
+}

@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "description": "A lightweight UI kit for customizable context menus.",
-  "scripts": {},
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [
     "context-menu",
     "right-click-menu",
@@ -22,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/DingYiWeiJE/context-menu-kit/issues"
   },
-  "homepage": "https://github.com/DingYiWeiJE/context-menu-kit#readme"
+  "homepage": "https://github.com/DingYiWeiJE/context-menu-kit#readme",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
 }

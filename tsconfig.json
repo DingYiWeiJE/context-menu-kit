@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2019", // 这里指定了编译后的代码版本
+    "module": "ESNext", // 这里指定了模块类型为 ESNext
+    "moduleResolution": "Bundler", // 这里指定了模块解析策略
+    "strict": true, // 开启严格模式
+    "declaration": true, // 生成对应的 .d.ts 文件
+    "declarationMap": true, // 生成对应的 .d.ts 文件
+    "sourceMap": true, // 生成对应的 .map 文件
+    "skipLibCheck": true, // 跳过库文件的类型检查
+    "isolatedModules": true, // 这里指定了模块类型为 ESNext
+    "jsx": "react-jsx", // 这里指定了 JSX 语法
+    "paths": { // 这里是路径别名配置
+      "@context-menu-kit/core": ["./packages/core/src/index.ts"],
+      "@context-menu-kit/react": ["./packages/react/src/index.ts"],
+      "@context-menu-kit/vue": ["./packages/vue/src/index.ts"]
+    }
+  }
+}
