@@ -1,0 +1,53 @@
+# Context Menu Kit API Design
+
+## React
+
+```tsx
+<ContextMenu
+  items={items}
+  bodyClass="my-menu-body"
+  itemClass="my-menu-item"
+  renderItem={({ item }) => <div>{item.label}</div>}
+  renderBody={({ items }) => <div>{items.map(...)}</div>}
+>
+  <div>右键触发区域</div>
+</ContextMenu>
+```
+
+## Vue
+
+```vue
+<ContextMenu :items="items" body-class="my-menu-body" item-class="my-menu-item">
+  <div>右键触发区域</div>
+
+  <template #item="{ item }">
+    <div>{{ item.label }}</div>
+  </template>
+
+  <template #body="{ items }">
+    <div>自定义 body</div>
+  </template>
+</ContextMenu>
+```
+
+### Vue Props
+
+```ts
+type ContextMenuProps<T = unknown> = {
+  items: ContextMenuItem<T>[]
+  bodyClass?: string
+  itemClass?: string
+}
+```
+
+### Vue Slots
+
+```ts
+type ContextMenuSlots<T = unknown> = {
+  default: () => unknown
+  item?: (props: { item: ContextMenuItem<T>; close: () => void }) => unknown
+  body?: (props: { items: ContextMenuItem<T>[]; close: () => void }) => unknown
+}
+```
+
+如果没有传入 bodyClass、itemClass、renderItem、renderBody 或 slots，ContextMenu 会使用内置默认渲染。
