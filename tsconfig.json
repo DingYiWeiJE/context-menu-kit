@@ -15,7 +15,7 @@
       // 这里是路径别名配置
       "@context-menu-kit/dom": ["packages/dom/src/index.ts"],
       "@context-menu-kit/core": ["packages/core/src/index.ts"],
-      "@context-menu-kit/react": ["packages/react/src/index.ts"],
+      "@context-menu-kit/react": ["./packages/react/src/index.tsx"],
       "@context-menu-kit/vue": ["packages/vue/src/index.ts"]
     }
   }

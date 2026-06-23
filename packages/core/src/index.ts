@@ -1,14 +1,14 @@
-export type ContextMenuItem = {
+export type ContextMenuItem<T = unknown> = {
   id: string
   label?: string
   disabled?: boolean
-  children?: ContextMenuItem[]
+  children?: ContextMenuItem<T>[]
   onClick?: (item: ContextMenuItem) => void
 
   /**
    * 允许用户挂载任意业务数据
    */
-  data?: unknown
+  data?: T
 }
 
 export type ContextMenuOpenOptions = {
