@@ -1,0 +1,23 @@
+.cmk-body {
+  min-width: 180px;
+  padding: 4px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #1e1e1e;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
+}
+
+.cmk-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cmk-item:hover {
+  background: #2c2c2c;
+}
+
+.cmk-item-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

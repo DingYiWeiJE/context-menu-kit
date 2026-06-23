@@ -1,3 +1,4 @@
+import "./styles.css"
 import type { ContextMenuItem } from "@context-menu-kit/core"
 import { closeContextMenu, openContextMenu } from "@context-menu-kit/core"
 import type { ReactNode } from "react"
@@ -32,3 +33,9 @@ export function ContextMenu<T = unknown>({ items, children }: ContextMenuProps<T
 }
 
 export { closeContextMenu }
+export {
+  ContextMenuRenderer,
+  type ContextMenuRendererProps,
+  type RenderItemProps,
+  type RenderBodyProps
+} from "./ContextMenuRenderer"

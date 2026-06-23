@@ -51,3 +51,16 @@ type ContextMenuSlots<T = unknown> = {
 ```
 
 如果没有传入 bodyClass、itemClass、renderItem、renderBody 或 slots，ContextMenu 会使用内置默认渲染。
+
+当同时传入 renderBody 和 renderItem 时，renderBody 生效，renderItem 不会被调用。
+
+## React Internal Architecture
+
+ContextMenu
+└── openContextMenu()
+
+ContextMenuRenderer
+└── subscribeContextMenu()
+
+ContextMenuProvider
+└── render menu ui
